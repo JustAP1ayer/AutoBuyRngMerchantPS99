@@ -32,11 +32,11 @@ while True:
     if timeOut >= 30:
         timeOut = 0
         pydirectinput.keyDown('s')
-        time.sleep(1.2)
+        time.sleep(1)
         pydirectinput.keyUp('s')
         time.sleep(0.1)
         pydirectinput.keyDown('w')
-        time.sleep(1.2)
+        time.sleep(1)
         pydirectinput.keyUp('w')
     
     timeOut += 0.2
