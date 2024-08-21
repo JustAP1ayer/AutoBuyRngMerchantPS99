@@ -32,7 +32,7 @@ while True:
         pyautogui.click(clicks=1)
         print(f"Clicked buy button on {x, y}")
         timeOut += 0.1
-    if timeOut >= 30:
+    if timeOut >= 30 and autoMove == True:
         timeOut = 0
         pydirectinput.keyDown('s')
         time.sleep(1)
