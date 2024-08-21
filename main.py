@@ -26,10 +26,6 @@ while True:
         pyautogui.mouseDown()
         pydirectinput.click()
         pyautogui.click(clicks=1)
-        time.sleep(0.1)
-        pyautogui.mouseUp()
-        pydirectinput.click()
-        pyautogui.click(clicks=1)
         print(f"Clicked buy button on {x, y}")
         if autoMove == True:
             timeOut += 0.1
