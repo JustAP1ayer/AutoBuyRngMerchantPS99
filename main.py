@@ -9,8 +9,9 @@ except ImportError:
     os.system("pip install opencv-python")
     os.system("pip install pydirectinput")
 
-autoMove = True # Automatically moves
+autoMove = False # Automatically moves
 timeOut = 0
+
 while True:
     buy = pyautogui.locateCenterOnScreen('buy.png', confidence=0.7)
     buy2 = pyautogui.locateCenterOnScreen('buy2.png', confidence=0.7)
