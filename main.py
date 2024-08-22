@@ -16,7 +16,7 @@ while True:
     buy = pyautogui.locateCenterOnScreen('buy.png', confidence=0.7)
     buy2 = pyautogui.locateCenterOnScreen('buy2.png', confidence=0.7)
     buy3 = pyautogui.locateCenterOnScreen('buy3.png', confidence=0.7)
-    buy4 = pyautogui.locateCenterOnScreen('buy3.png', confidence=0.7)
+    buy4 = pyautogui.locateCenterOnScreen('buy4.png', confidence=0.7)
 
     ok = pyautogui.locateCenterOnScreen('ok.png', confidence=0.7)
     ok2 = pyautogui.locateCenterOnScreen('ok2.png', confidence=0.7)
