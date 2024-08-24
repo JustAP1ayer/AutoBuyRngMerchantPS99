@@ -17,7 +17,10 @@ while True:
     button_clicked = False
     
     for image_file in image_files:
-        button_location = pyautogui.locateCenterOnScreen(image_file, confidence=0.7)
+        confidence_level = 0.7
+        if image_file in ['ok.png', 'ok2.png']:
+            confidence_level = 0.8
+        button_location = pyautogui.locateCenterOnScreen(image_file, confidence=confidence_level)
         if button_location:
             x, y = button_location
             pydirectinput.moveTo(x, y)
