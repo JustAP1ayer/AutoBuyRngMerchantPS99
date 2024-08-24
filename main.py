@@ -1,46 +1,48 @@
 import os
 import time
+
 try:
     import pydirectinput
     import pyautogui
-    # pip install opencv-python
 except ImportError:
-    os.system("pip install pyautogui")
-    os.system("pip install opencv-python")
-    os.system("pip install pydirectinput")
+    os.system("pip install pyautogui opencv-python pydirectinput")
 
-autoMove = False # Automatically moves for multiple dice hatch
-timeOut = 0
+auto_move = False  # Automatically moves for multiple dice hatch
+
+timeout = 0
+
+image_files = ['buy.png', 'buy2.png', 'buy3.png', 'buy4.png', 'ok.png', 'ok2.png']
 
 while True:
-    buy = pyautogui.locateCenterOnScreen('buy.png', confidence=0.7)
-    buy2 = pyautogui.locateCenterOnScreen('buy2.png', confidence=0.7)
-    buy3 = pyautogui.locateCenterOnScreen('buy3.png', confidence=0.7)
-    buy4 = pyautogui.locateCenterOnScreen('buy4.png', confidence=0.7)
+    button_clicked = False
+    
+    for image_file in image_files:
+        button_location = pyautogui.locateCenterOnScreen(image_file, confidence=0.7)
+        if button_location:
+            x, y = button_location
+            pydirectinput.moveTo(x, y)
+            pydirectinput.move(5, None)
+            pyautogui.mouseDown()
+            pydirectinput.click()
+            pyautogui.click(clicks=1)
+            print(f"Clicked button at ({x}, {y})")
+            button_clicked = True
+            if auto_move:
+                timeout += 0.1
+            break
 
-    ok = pyautogui.locateCenterOnScreen('ok.png', confidence=0.7)
-    ok2 = pyautogui.locateCenterOnScreen('ok2.png', confidence=0.7)
-
-    if buy or buy2 or buy3 or buy4 or ok or ok2:
-        x, y = buy or buy2 or buy3 or buy4 or ok or ok2
-        pydirectinput.moveTo(x, y)
-        pydirectinput.move(5, None)
-        pyautogui.mouseDown()
-        pydirectinput.click()
-        pyautogui.click(clicks=1)
-        print(f"Clicked button on {x, y}")
-        if autoMove == True:
-            timeOut += 0.1
-    if timeOut >= 30 and autoMove == True:
-        timeOut = 0
-        pydirectinput.keyDown('s')
-        time.sleep(1)
-        pydirectinput.keyUp('s')
-        time.sleep(0.1)
-        pydirectinput.keyDown('w')
-        time.sleep(1)
-        pydirectinput.keyUp('w')
-    if autoMove == True:
-        timeOut += 0.2
-        print(timeOut)
+    if auto_move:
+        if timeout >= 30:
+            timeout = 0
+            pydirectinput.keyDown('s')
+            time.sleep(1)
+            pydirectinput.keyUp('s')
+            time.sleep(0.1)
+            pydirectinput.keyDown('w')
+            time.sleep(1)
+            pydirectinput.keyUp('w')
+        else:
+            timeout += 0.2
+            print(timeout)
+    
     time.sleep(0.1)
